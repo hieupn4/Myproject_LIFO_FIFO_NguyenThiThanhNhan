@@ -10,6 +10,7 @@ struct node
 	int so;
 	struct node *next;
 };
+// hàm đọc tệp các số nguyên ra một danh sách LIFO được trỏ bởi con trỏ first
 struct node *doctepLIFO(struct node *first)
 {
     int *sn;
@@ -45,6 +46,7 @@ struct node *doctepLIFO(struct node *first)
     }
 	return first;
 }
+// hàm kiểm tra một số có phải là dương và chẵn hay không 
 int kiemTraDuongChan(int x)
 {
    if((x>0)&&((x%2)==0))
@@ -52,6 +54,7 @@ int kiemTraDuongChan(int x)
    else
    return 0;
 }
+// hàm đọc từ danh sách LIFO first thành một danh sách FIFO bao gồm các số dương và chẵn
 struct node *doctepFIFO(struct node *first)
 {
     struct node *second=NULL;
@@ -82,7 +85,7 @@ struct node *doctepFIFO(struct node *first)
     }
 	return second;
 }
-
+// hàm hiện thị danh sách
 void xem(struct node *first)
 {
 	struct node *tam= first;
