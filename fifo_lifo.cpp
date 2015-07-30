@@ -3,8 +3,8 @@
 #include<iostream>
 #include<fstream>
 #include<stdlib.h>
-int k=0;
-int demdc =0;
+int k=0; // lưu số phần tử có trong danh sách LIFO
+int demdc =0; // lưu số phần tử của danh sách FIFO
 struct node
 {
 	int so;
@@ -57,28 +57,40 @@ int kiemTraDuongChan(int x)
 // hàm đọc từ danh sách LIFO first thành một danh sách FIFO bao gồm các số dương và chẵn
 struct node *doctepFIFO(struct node *first)
 {
+    // con trỏ này để trỏ đến danh sách FIFO, nó đến phần tử đầu tiên
     struct node *second=NULL;
-	int dem =0;
+    // biến dem nay để xác định nút đầu tiên trong danh sách FIFO
+    int dem =0;
+    // con trỏ này dùng để khởi tạo các nút khi có nút mới thêm vào
     struct node *tam;
+    // con trỏ này sẽ luôn trỏ vào nút thêm vào mới nhất
     struct node *luutru;
+    // thao tác đưa từng phần tử từ LIFO vào danh sách FIFO
     for(int i=0;i<k;i++)
     {
+    	// thao tác duyệt danh sách
 		int n = first->so;
 		first=(first->next);
+	//nếu đúng là dương và chẵn thì mới đưa vào FIFO
         if(kiemTraDuongChan(n)==1)
         {
+            // cấp phát bộ nhớ cho con trỏ khi có nút mới thêm vào
             tam = ( struct node*)malloc(1*sizeof(struct node));
+            // set giá trị cho nút mới thêm vào
             tam->so = n;
             std::cout <<"...."<<n;
             demdc ++;
+            // nếu là phần tử đầu tiên thì cả hai con trỏ second và luutru sẽ cùng trỏ vào nó
             if(dem==0)
             {
+               //con trỏ second luôn trỏ vào phần tử đầu tiên của danh sách FIFO
                second = tam;
                luutru = tam;
             }
             else
             {
-		      second->next = tam;
+            	      // con trỏ lưu trữ thì luôn trỏ đến nút thêm vào danh sách FIFO mới nhất
+		      luutru->next = tam;
             }
            dem++;
         }
